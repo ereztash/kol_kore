@@ -1,0 +1,82 @@
+{
+  "dataset": "PhysioNet/CinC Challenge 2015 (training, 750 records)",
+  "n_usable": 750,
+  "n_skipped": 0,
+  "test1_separation": {
+    "auc_all": [
+      0.726191651333953,
+      0.02663050072541806
+    ],
+    "auc_rate_types": [
+      0.8341257237386269,
+      0.05451114697235288
+    ],
+    "single_feature_auc": {
+      "J_peak": 0.6774339121613558,
+      "hr_delta": 0.6113311552691253,
+      "hr_mean": 0.6050841389187254,
+      "hr_trend": 0.5809203067191788,
+      "ac1_trend": 0.5654165174841868,
+      "ac1": 0.5649204857381549,
+      "var_trend": 0.5236342343955126,
+      "hr_std": 0.5146497195369376,
+      "G_final": 0.5084138918725385,
+      "hr_range": 0.5083057345745315,
+      "G_slope": 0.5011822711540757
+    },
+    "n": 750,
+    "n_true": 294
+  },
+  "test2_logistic": {
+    "k": 5.5933760734237294,
+    "J_star": 0.6228497595624923,
+    "auc": 0.6993155149934811,
+    "slope_at_Jstar": 1.3983440183559324,
+    "n": 229,
+    "n_true": 177
+  },
+  "test3_leadtime": {
+    "tradeoff_table": [
+      {
+        "fp_target": 0.05,
+        "theta_G": 1871.0844263320314,
+        "fp_actual": 0.057692307692307696,
+        "g_sensitivity": 0.056338028169014086,
+        "median_lead_s": -21.0,
+        "frac_G_leads": 0.5
+      },
+      {
+        "fp_target": 0.1,
+        "theta_G": 1383.3927072334966,
+        "fp_actual": 0.11538461538461539,
+        "g_sensitivity": 0.07042253521126761,
+        "median_lead_s": -57.0,
+        "frac_G_leads": 0.4
+      },
+      {
+        "fp_target": 0.2,
+        "theta_G": 640.1860752742107,
+        "fp_actual": 0.21153846153846154,
+        "g_sensitivity": 0.2323943661971831,
+        "median_lead_s": -22.0,
+        "frac_G_leads": 0.3939393939393939
+      },
+      {
+        "fp_target": 0.4,
+        "theta_G": 168.93638881254563,
+        "fp_actual": 0.40384615384615385,
+        "g_sensitivity": 0.5422535211267606,
+        "median_lead_s": -5.0,
+        "frac_G_leads": 0.4935064935064935
+      }
+    ],
+    "op_point": {
+      "fp_target": 0.2,
+      "theta_G": 640.1860752742107,
+      "fp_actual": 0.21153846153846154,
+      "g_sensitivity": 0.2323943661971831,
+      "median_lead_s": -22.0,
+      "frac_G_leads": 0.3939393939393939
+    }
+  }
+}
