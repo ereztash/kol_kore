@@ -1,0 +1,69 @@
+{
+  "sweep": [
+    {
+      "beta": 0.05,
+      "leads": {
+        "habituating": 75.5,
+        "fixed": 67.5,
+        "gap": 34.0
+      },
+      "miss": {
+        "habituating": 0.04,
+        "fixed": 0.0,
+        "gap": 0.25
+      }
+    },
+    {
+      "beta": 0.1,
+      "leads": {
+        "habituating": 101.0,
+        "fixed": 67.5,
+        "gap": 32.5
+      },
+      "miss": {
+        "habituating": 0.11,
+        "fixed": 0.0,
+        "gap": 0.0
+      }
+    },
+    {
+      "beta": 0.2,
+      "leads": {
+        "habituating": 106.0,
+        "fixed": 67.5,
+        "gap": 45.5
+      },
+      "miss": {
+        "habituating": 0.14,
+        "fixed": 0.0,
+        "gap": 0.0
+      }
+    },
+    {
+      "beta": 0.4,
+      "leads": {
+        "habituating": 131.0,
+        "fixed": 67.5,
+        "gap": 58.5
+      },
+      "miss": {
+        "habituating": 0.3,
+        "fixed": 0.0,
+        "gap": 0.0
+      }
+    },
+    {
+      "beta": 0.6,
+      "leads": {
+        "habituating": 128.5,
+        "fixed": 67.5,
+        "gap": 64.0
+      },
+      "miss": {
+        "habituating": 0.22,
+        "fixed": 0.0,
+        "gap": 0.0
+      }
+    }
+  ]
+}

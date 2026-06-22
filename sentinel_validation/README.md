@@ -4,7 +4,10 @@ Validates the failure model from the *Sentinel — Dual-Substrate Deviation unde
 One Failure Model* (MAFAT) proposal on **real, labelled** data instead of the
 proposal's synthetic data — across **three** fundamentally different substrates.
 
-See **[`REPORT.md`](REPORT.md)** for the full writeup and verdict on H1/H2/H3.
+See **[`REPORT.md`](REPORT.md)** for the three-substrate writeup (H1/H2/H3), and
+**[`META_REPORT.md`](META_REPORT.md)** for the meta-tests that probe whether we
+measured the proposal's *actual novelty* (ablation vs standard baselines; the joint
+compound-failure window; normalization of deviance) rather than its commodity parts.
 
 ## Three substrates, the same equations (`J`, `G`, logistic)
 
