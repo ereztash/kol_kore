@@ -2,44 +2,35 @@
 
 Validates the failure model from the *Sentinel — Dual-Substrate Deviation under
 One Failure Model* (MAFAT) proposal on **real, labelled** data instead of the
-proposal's synthetic data — on **both** substrates the proposal targets.
+proposal's synthetic data — across **three** fundamentally different substrates.
 
 See **[`REPORT.md`](REPORT.md)** for the full writeup and verdict on H1/H2/H3.
 
-## Two substrates, the same equations
+## Three substrates, the same equations (`J`, `G`, logistic)
 
-| | Substrate A — human operator | Substrate B — AI agent |
-|---|---|---|
-| Dataset | PhysioNet/CinC 2015 ICU alarms (750, true/false) | SWE-bench Verified agent runs (500, pass/fail) |
-| `J` (load/capacity) | approach to clinical HR threshold | budget utilisation (steps / 100) |
-| `G(t)` | KL drift of HR distribution | KL drift of `{node,tool_call,retry,error}` dist |
-| script | `validate_sentinel_physionet.py` | `validate_sentinel_agents.py` |
+| | A — human operator | B — AI agent | C — machine (silent drift) |
+|---|---|---|---|
+| Dataset | PhysioNet/CinC 2015 ICU alarms (750) | SWE-bench Verified agent runs (500) | NASA C-MAPSS FD001 (100 engines) |
+| `J` (load/capacity) | approach to HR threshold | budget utilisation (steps/100) | normalised degradation index |
+| failure regime | noisy (artifact) | noisy (loud errors) | **silent drift** |
+| script | `validate_sentinel_physionet.py` | `validate_sentinel_agents.py` | `validate_sentinel_cmapss.py` |
 
-## What each pipeline tests
-- **T1** — does the instability/divergence signal separate the two classes? (5-fold CV AUC)
-- **T2** — recover the logistic `P_fail(J)=1/(1+e^{-k(J-J*)})`; estimate `J*`, `k`.
-- **T3** — does the divergence monitor `G(t)` precede a raw error monitor? (lead-time trade-off)
-
-## Headline result
-- **H1 holds on both substrates:** logistic phase transition recovered, `J*=0.62` (ICU)
-  and `J*=0.82` (agent) — both inside the proposal's stated range 0.4–0.8; AUC 0.83 / 0.73.
-- **H3 supported:** the *same* `J`/`G`/logistic pipeline recovers failure on ECG waveforms
-  *and* agent traces — fundamentally different substrates.
-- **H2 does not give early-warning lead** on either public dataset — ICU because artifact-driven
-  false alarms inflate cumulative `G`; agent because SWE-bench errors are loud and early (no
-  "silent drift"). This pinpoints the synthetic→field gap the funded work must close.
+## Verdict
+- **H1 (logistic phase transition) — holds on all three** (AUC 0.83 / 0.73 / 0.97).
+  But `J*` is substrate-specific (0.62 / 0.82 / 0.32), **not** a universal constant.
+- **H2 (G as early warning) — regime-dependent, and this is the key finding.**
+  On genuinely *silent* drift (C-MAPSS) `G` warns a median **+78 cycles before** a raw
+  redline (90% of engines). On noisy substrates (ICU artifact, agent loud-errors) it
+  gives no lead. The proposal's H2 is correct **in its intended regime**.
+- **H3 (one model, many substrates) — supported:** the same `J`/`G`/logistic pipeline
+  recovers failure on ECG waveforms, agent traces, and turbofan sensors.
 
 ## Reproduce
 ```bash
 pip install -r requirements.txt
 
-# Substrate A — ICU alarms (~400 MB)
-python3 fetch_data.py && python3 validate_sentinel_physionet.py
-
-# Substrate B — agent traces (~150 MB)
-python3 fetch_agents.py && python3 validate_sentinel_agents.py
+python3 fetch_data.py    && python3 validate_sentinel_physionet.py   # A: ICU   (~400 MB)
+python3 fetch_agents.py  && python3 validate_sentinel_agents.py      # B: agent (~150 MB)
+python3 fetch_cmapss.py  && python3 validate_sentinel_cmapss.py      # C: C-MAPSS (~3 MB)
 ```
-Outputs: `results.json`, `results_agents.json`, and `figs/*.png`.
-
-> Raw data is **not** committed (both open-access; ~550 MB total). The `fetch_*.py`
-> scripts download it.
+Outputs: `results*.json` and `figs/*.png`. Raw data is open-access and **not** committed.

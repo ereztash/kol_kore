@@ -1,0 +1,46 @@
+{
+  "dataset": "NASA C-MAPSS FD001 (100 run-to-failure turbofan engines)",
+  "n_engines": 100,
+  "h1": {
+    "k": 11.421635754128515,
+    "J_star": 0.32119215520920713,
+    "slope": 2.8554089385321286,
+    "auc": 0.973824627580377,
+    "n": 15731,
+    "n_imminent": 3100
+  },
+  "h2": {
+    "table": [
+      {
+        "alpha": 0.005,
+        "th_raw": 6.280256516957869,
+        "th_G": 5.173590702086364,
+        "med_lead_raw": 61.5,
+        "med_lead_G": 163.5,
+        "med_gain_cycles": 85.0,
+        "frac_G_earlier": 0.95,
+        "n_both": 100
+      },
+      {
+        "alpha": 0.01,
+        "th_raw": 6.146656380896641,
+        "th_G": 4.9490976137658915,
+        "med_lead_raw": 67.5,
+        "med_lead_G": 163.5,
+        "med_gain_cycles": 78.5,
+        "frac_G_earlier": 0.9,
+        "n_both": 100
+      },
+      {
+        "alpha": 0.05,
+        "th_raw": 5.389507608737295,
+        "th_G": 4.195705586271136,
+        "med_lead_raw": 144.5,
+        "med_lead_G": 166.5,
+        "med_gain_cycles": 17.5,
+        "frac_G_earlier": 0.71,
+        "n_both": 100
+      }
+    ]
+  }
+}
